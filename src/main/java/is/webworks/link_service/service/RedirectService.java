@@ -17,13 +17,14 @@ public class RedirectService {
     @Autowired
     UrlDao urlDao;
 
-    public ResponseEntity<String> redirect(UUID id){
-        Optional optional = urlDao.findById(id);
+    public ResponseEntity<String> redirect(UUID uuid){
+        Url url = urlDao.findByRedirectCode(uuid);
+        /*Optional optional = urlDao.findById(id);
         if(optional.isEmpty()){
             // TODO: Need to find better way to handle url not found
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Url not found.");
         }
-        Url url = (Url) optional.get();
+        Url url = (Url) optional.get();*/
         return ResponseEntity.status(HttpStatus.FOUND).location(URI.create(url.getMessageUrl())).build();
     }
 }

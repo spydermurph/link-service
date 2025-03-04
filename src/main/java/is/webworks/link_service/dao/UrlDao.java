@@ -5,5 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.UUID;
 
-public interface UrlDao extends JpaRepository<Url, UUID> {
+public interface UrlDao extends JpaRepository<Url, Integer> {
+    Url findByRedirectCode(UUID uuid);
 }
